@@ -24,10 +24,12 @@ public class StatsController {
     @GetMapping("/stats")
     @ResponseStatus(HttpStatus.OK)
     public List<ViewStatsDto> getStats(
-            @RequestParam String start,
-            @RequestParam String end,
+            @RequestParam(required = false) String start,
+            @RequestParam(required = false) String end,
             @RequestParam(required = false) List<String> uris,
             @RequestParam(defaultValue = "false") boolean unique) {
-        return statsService.getStats(start, end, uris, unique);
+
+        List<ViewStatsDto> result = statsService.getStats(start, end, uris, unique);
+        return result;
     }
 }
