@@ -1,7 +1,8 @@
-package ru.practicum.ewm.model;
+package ru.practicum.ewm.model.eventRating;
 
 import jakarta.persistence.*;
 import lombok.*;
+import ru.practicum.ewm.model.User;
 import ru.practicum.ewm.model.event.Event;
 
 @Entity
@@ -11,18 +12,19 @@ import ru.practicum.ewm.model.event.Event;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EventRating {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @EmbeddedId
+    private EventRatingId id;
 
     @ManyToOne
+    @MapsId("userId")
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
+    @MapsId("eventId")
     @JoinColumn(name = "event_id")
     private Event event;
 
-    @Column(name = "rating")
-    private Integer rating;
+    @Column(name = "is_like")
+    private boolean liked;
 }
