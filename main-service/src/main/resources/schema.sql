@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS events (
     state VARCHAR(20) NOT NULL CHECK (state IN ('PENDING', 'PUBLISHED', 'CANCELED')),
     latitude NUMERIC(9,6),
     longitude NUMERIC(9,6),
+    rating BIGINT NOT NULL DEFAULT 0,
     CONSTRAINT pk_events PRIMARY KEY (id),
     CONSTRAINT fk_events_category_id FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT,
     CONSTRAINT fk_events_initiator_id FOREIGN KEY (initiator_id) REFERENCES users(id) ON DELETE CASCADE
@@ -61,7 +62,7 @@ CREATE TABLE IF NOT EXISTS compilation_events (
 CREATE TABLE IF NOT EXISTS event_ratings (
     user_id BIGINT NOT NULL,
     event_id BIGINT NOT NULL,
-    rating INT CHECK (rating IN (-1, 1)),
+    is_like BOOLEAN NOT NULL,
     PRIMARY KEY (user_id, event_id),
     CONSTRAINT fk_event_ratings_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     CONSTRAINT fk_event_ratings_event FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE

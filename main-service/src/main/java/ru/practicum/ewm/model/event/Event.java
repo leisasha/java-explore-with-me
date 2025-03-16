@@ -59,4 +59,7 @@ public class Event {
 
     private Double latitude;
     private Double longitude;
+
+    @Column(name = "rating")
+    private Long rating = 0L;
 }

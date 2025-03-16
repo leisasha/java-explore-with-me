@@ -180,6 +180,8 @@ public class EventServiceImpl implements EventService {
             pageable = PageRequest.of(from / size, size, Sort.by("eventDate").ascending());
         } else if ("VIEWS".equalsIgnoreCase(sort)) {
             pageable = PageRequest.of(from / size, size, Sort.by("views").descending());
+        } else if ("RATING".equalsIgnoreCase(sort)) {
+            pageable = PageRequest.of(from / size, size, Sort.by("rating").descending());
         } else {
             pageable = PageRequest.of(from / size, size, Sort.by("id").ascending());
         }

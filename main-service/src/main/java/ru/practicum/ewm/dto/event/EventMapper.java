@@ -43,7 +43,8 @@ public final class EventMapper {
                 event.getEventDate(),
                 event.getPaid(),
                 confirmedRequests,
-                views
+                views,
+                event.getRating()
         );
     }
 
@@ -63,7 +64,8 @@ public final class EventMapper {
                 null,
                 EventState.PENDING,
                 newEventDto.getLocation().getLat(),
-                newEventDto.getLocation().getLon()
+                newEventDto.getLocation().getLon(),
+                0L
         );
     }
 }
